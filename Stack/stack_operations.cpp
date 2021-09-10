@@ -5,18 +5,23 @@ using namespace std;
 class Stack
 {
 private:
-    int top;
-    int arr[5];
+    int top,length;
+    int *arr;
 
 public:
-    Stack()
+    Stack(int size)
     {
         top = -1;
-        for (int i = 0; i < 5; i++)
-        {
-            arr[i] = 0;
-        }
+        length=size;
+        arr=new int[length];
+       for(int i=0;i<length;i++){
+           arr[i]=0;
+       }
     }
+    // void enterSize(){
+    //     cout<<"Enter the size of Stack<<endl";
+    //     cin>>size;
+    // }
     bool isEmpty()
     {
         if (top == -1)
@@ -30,7 +35,7 @@ public:
     }
     bool isFull()
     {
-        if (top == 4)
+        if (top == length-1)
         {
             return true;
         }
@@ -88,7 +93,7 @@ public:
     void display()
     {
         cout << "All values of stack are" << endl;
-        for (int i = 4; i >= 0; i--)
+        for (int i = length; i >= 0; i--)
         {
             cout << arr[i] << endl;
         }
@@ -98,9 +103,12 @@ public:
 int main()
 {
 
-    Stack s1;
-    int option, position, value;
+    // s1.enterSize();
+    int option, position, value,size;
+    cout<<"Enter a size for stack :";
+    cin>>size;
 
+    Stack s1(size);
     do
     {
         cout << "What operation do you want to perform? Select Option Number.Enter 0 to exit"<<endl;
